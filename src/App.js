@@ -31,7 +31,7 @@ function App() {
     <div className="App">
       <div className="container">
         <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-        <MovieList list={movies} style={movieListStyle} />
+        {searchQuery && <MovieList list={movies} style={movieListStyle} />}
       </div>
     </div>
   );

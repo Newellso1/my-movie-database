@@ -1,7 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.App {
+  font-family: Outfit;
+  letter-spacing: 0.05em;
 }
 
 .App > .container {
@@ -11,6 +18,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 1em;
 }
 
 .App > .container > .search {
@@ -18,4 +26,19 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 1em;
+}
+
+.movie {
+  border: 1px solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-height: 25em;
+}
+
+.movie-poster > img {
+  object-fit: cover;
 }
