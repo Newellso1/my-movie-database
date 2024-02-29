@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Search from "./Search";
+import MovieList from "./MovieList";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -16,10 +17,21 @@ function App() {
       });
   }, [searchQuery]);
 
+  const movieListStyle = {
+    border: "1px solid",
+    maxWidth: "80%",
+    display: "flex",
+    flexDirection: "row",
+    gap: "1em",
+    overflowX: "scroll",
+    padding: "2em",
+  };
+
   return (
     <div className="App">
       <div className="container">
         <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <MovieList list={movies} style={movieListStyle} />
       </div>
     </div>
   );

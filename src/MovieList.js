@@ -1,8 +1,17 @@
+import Movie from "./Movie";
+
 export default function MovieList({ list, handleClick, style }) {
   return (
-    <div className="movie-list">
+    <div style={style}>
       {list.map((movie) => (
-        <Movie></Movie>
+        <Movie
+          key={movie.imdbID}
+          title={movie.Title}
+          url={movie.Poster}
+          year={movie.Year}
+          button="+"
+          handleClick={() => handleClick(movie)}
+        />
       ))}
     </div>
   );
