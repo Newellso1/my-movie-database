@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import Search from "./Search";
 
 function App() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [movies, setMovies] = useState([]);
+  const [favourites, setFavourites] = useState([]);
+
+  useEffect(() => {
+    fetch(`https://www.omdbapi.com/?s=${searchQuery}&apikey=4a3b711b`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.Search) {
+          setMovies(data.Search);
+        }
+      });
+  }, [searchQuery]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container">
+        <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      </div>
     </div>
   );
 }
