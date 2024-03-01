@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Search from "./Search";
 import MovieList from "./MovieList";
+import FavouriteTab from "./FavouriteTab";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -18,20 +19,34 @@ function App() {
   }, [searchQuery]);
 
   const movieListStyle = {
-    border: "1px solid",
+    border: "4px solid",
+    borderRadius: "1em",
     maxWidth: "80%",
     display: "flex",
     flexDirection: "row",
     gap: "1em",
     overflowX: "scroll",
     padding: "2em",
+    backgroundColor: "#CCD5AE",
+  };
+
+  const addFavouriteMovie = (movie) => {
+    const newFavouriteList = [...favourites, movie];
+    setFavourites(newFavouriteList);
   };
 
   return (
     <div className="App">
       <div className="container">
         <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-        {searchQuery && <MovieList list={movies} style={movieListStyle} />}
+        {searchQuery && (
+          <MovieList
+            list={movies}
+            style={movieListStyle}
+            handleClick={addFavouriteMovie}
+          />
+        )}
+        <FavouriteTab favourites={favourites} movieListStyle={movieListStyle} />
       </div>
     </div>
   );

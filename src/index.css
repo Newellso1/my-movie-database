@@ -7,11 +7,14 @@
 }
 
 .App {
+  max-width: 100vw;
   font-family: Outfit;
   letter-spacing: 0.05em;
+  overflow-x: hidden;
 }
 
 .App > .container {
+  position: relative;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -19,6 +22,7 @@
   justify-content: center;
   align-items: center;
   gap: 1em;
+  background-color: #e9edc9;
 }
 
 .App > .container > .search {
@@ -29,11 +33,14 @@
   gap: 1em;
 }
 
+.App > .container > .search > input {
+  text-align: center;
+  padding: 0.25em;
+}
+
 .movie {
-  border: 1px solid;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   text-align: center;
   max-height: 25em;
@@ -41,4 +48,95 @@
 
 .movie-poster > img {
   object-fit: cover;
+}
+
+.movie-poster {
+  height: 19.5em;
+}
+
+.movie-poster > img {
+  border-radius: 0.5em;
+  object-fit: cover;
+  transition: filter 0.3s;
+  transition: box-shadow 0.3s;
+  filter: grayscale(60%);
+  box-shadow: 0 -0.1em 0.5em rgb(181, 144, 151);
+}
+
+.movie:hover > .movie-poster > img {
+  filter: grayscale(5%);
+  box-shadow: 0 -0.1em 0.75em rgb(181, 144, 151);
+}
+.picture-menu {
+  background-color: rgba(255, 192, 203, 0.781);
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  bottom: 11.5%;
+  height: 2em;
+  padding: 0.25em;
+  border-radius: 0 0 0.5em 0.5em;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.movie-poster > .picture-menu > .movie-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: rgb(245, 245, 245);
+  text-shadow: 0 0 0.45em rgb(206, 68, 91);
+  transition: text-shadow 0.3s;
+  cursor: pointer;
+}
+
+.movie-poster > .picture-menu > .movie-button:hover {
+  text-shadow: 0 0 0.55em rgb(241, 200, 206);
+}
+
+.movie-poster:hover > .picture-menu {
+  opacity: 1;
+}
+
+.movie > h4 {
+  text-align: center;
+  max-width: 200px;
+}
+
+.favourite-tab {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  display: flex;
+  filter: drop-shadow(0 0 1em #d8d3abc9);
+  transition: left 300ms;
+}
+
+.favourite-tab > .tab {
+  width: 50px;
+  height: 10em;
+  background-color: #fefae0;
+  border-radius: 0 0 0 1em;
+}
+
+.favourite-tab > .menu {
+  width: 100vw;
+  height: 100vh;
+  background-color: #fefae0;
+  border-radius: 0 0 0 1em;
+}
+
+.favourite-tab > .tab > .tab-button {
+  background-color: #d4a373;
+  height: 1.5em;
+  width: 1.5em;
+  border-radius: 1em;
+  position: relative;
+  top: 70%;
+  left: 30%;
+  box-shadow: 0 0 0.25em #919479b6;
+  transition: all 350ms;
 }
