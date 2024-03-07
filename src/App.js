@@ -30,11 +30,31 @@ function App() {
     backgroundColor: "#CCD5AE",
   };
 
+  const FavouriteListStyle = {
+    border: "4px solid",
+    borderRadius: "1em",
+    maxWidth: "70%",
+    maxHeight: "80%",
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    gap: "1em",
+    overflowX: "scroll",
+    padding: "2em",
+    backgroundColor: "#d4a373",
+  };
+
   const addFavouriteMovie = (movie) => {
     const newFavouriteList = [...favourites, movie];
     setFavourites(newFavouriteList);
   };
 
+  const deleteFavouriteMovie = (imdbID) => {
+    setFavourites((prevFavourites) =>
+      prevFavourites.filter((movie) => movie.imdbID !== imdbID)
+    );
+  };
   return (
     <div className="App">
       <div className="container">
@@ -46,7 +66,12 @@ function App() {
             handleClick={addFavouriteMovie}
           />
         )}
-        <FavouriteTab favourites={favourites} movieListStyle={movieListStyle} />
+        <FavouriteTab
+          favourites={favourites}
+          movieListStyle={movieListStyle}
+          FavouriteListStyle={FavouriteListStyle}
+          deleteFavouriteMovie={deleteFavouriteMovie}
+        />
       </div>
     </div>
   );

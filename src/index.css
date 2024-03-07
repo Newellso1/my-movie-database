@@ -116,17 +116,20 @@
 }
 
 .favourite-tab > .tab {
-  width: 50px;
+  min-width: 50px;
   height: 10em;
   background-color: #fefae0;
   border-radius: 0 0 0 1em;
 }
 
 .favourite-tab > .menu {
-  width: 100vw;
+  min-width: 100vw;
   height: 100vh;
   background-color: #fefae0;
   border-radius: 0 0 0 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .favourite-tab > .tab > .tab-button {
