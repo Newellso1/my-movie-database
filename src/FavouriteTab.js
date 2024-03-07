@@ -5,6 +5,7 @@ export default function FavouriteTab({
   favourites,
   FavouriteListStyle,
   deleteFavouriteMovie,
+  handleMovieClick,
 }) {
   const [openTab, setOpenTab] = useState(false);
 
@@ -16,11 +17,15 @@ export default function FavouriteTab({
     boxShadow: openTab ? "0 0 0.5em #919479" : "",
   };
 
+  const MovieStatStyle = {
+    opacity: openTab ? "0.9" : "0.5",
+  };
+
   const listLength = favourites.length;
   return (
     <div className="favourite-tab" style={tabPositionStyle}>
       <div className="tab">
-        <h5> My favourites ({listLength})</h5>
+        <h5 style={MovieStatStyle}> My favourites ({listLength})</h5>
         <div
           className="tab-button"
           style={buttonShadowStyle}
@@ -34,6 +39,7 @@ export default function FavouriteTab({
             style={FavouriteListStyle}
             button="-"
             handleClick={(movie) => deleteFavouriteMovie(movie.imdbID)}
+            handleMovieClick={handleMovieClick}
           />
         )}
       </div>

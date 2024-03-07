@@ -7,6 +7,8 @@ function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [favourites, setFavourites] = useState([]);
+  const [movieInfo, setMovieInfo] = useState("{}");
+  const [selectMovie, setSelectedMovie] = useState("tt1981115");
 
   useEffect(() => {
     fetch(`https://www.omdbapi.com/?s=${searchQuery}&apikey=4a3b711b`)
@@ -17,6 +19,18 @@ function App() {
         }
       });
   }, [searchQuery]);
+
+  useEffect(() => {
+    fetch(
+      `https://api.themoviedb.org/3/movie/${selectMovie}?api_key=a0b0a5a7c9de82ebe8eeea1282f66454`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) {
+          setMovieInfo(data);
+        }
+      });
+  }, [selectMovie]);
 
   const movieListStyle = {
     border: "4px solid",
@@ -43,6 +57,8 @@ function App() {
     overflowX: "scroll",
     padding: "2em",
     backgroundColor: "#d4a373",
+    position: "relative",
+    right: "3em",
   };
 
   const addFavouriteMovie = (movie) => {
@@ -55,6 +71,11 @@ function App() {
       prevFavourites.filter((movie) => movie.imdbID !== imdbID)
     );
   };
+
+  const handleMovieClick = (imdbID) => {
+    setSelectedMovie(imdbID);
+  };
+
   return (
     <div className="App">
       <div className="container">
@@ -64,6 +85,7 @@ function App() {
             list={movies}
             style={movieListStyle}
             handleClick={addFavouriteMovie}
+            handleMovieClick={handleMovieClick}
           />
         )}
         <FavouriteTab
@@ -71,6 +93,7 @@ function App() {
           movieListStyle={movieListStyle}
           FavouriteListStyle={FavouriteListStyle}
           deleteFavouriteMovie={deleteFavouriteMovie}
+          handleMovieClick={handleMovieClick}
         />
       </div>
     </div>

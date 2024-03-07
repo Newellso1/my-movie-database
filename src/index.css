@@ -126,6 +126,15 @@
 
 .favourite-tab > .tab > h5 {
   rotate: -90deg;
+  position: relative;
+  top: 2.3em;
+  right: 1em;
+  /* border: 1px solid; */
+  height: 5em;
+  text-wrap: nowrap;
+  width: 120px;
+  font-size: 0.75em;
+  transition: opacity 300ms;
 }
 
 .favourite-tab > .menu {

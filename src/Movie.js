@@ -4,11 +4,20 @@ export default function Movie({
   year = "Year of Release",
   button = "button",
   handleClick,
+  handleMovieClick,
+  id,
 }) {
   return (
     <div className="movie">
       <div className="movie-poster">
-        <img src={url} alt={title} height="300px" width="200px" />
+        <img
+          id={id}
+          src={url}
+          alt={title}
+          height="300px"
+          width="200px"
+          onClick={() => handleMovieClick(id)}
+        />
         <div className="picture-menu">
           <div className="movie-button" onClick={handleClick}>
             {button}
