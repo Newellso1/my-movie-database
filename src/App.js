@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Search from "./Search";
 import MovieList from "./MovieList";
 import FavouriteTab from "./FavouriteTab";
+import MovieInfo from "./MovieInfo";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -9,6 +10,7 @@ function App() {
   const [favourites, setFavourites] = useState([]);
   const [movieInfo, setMovieInfo] = useState("{}");
   const [selectMovie, setSelectedMovie] = useState("tt1981115");
+  const [showMovieInfo, setShowMovieInfo] = useState(false);
 
   useEffect(() => {
     fetch(`https://www.omdbapi.com/?s=${searchQuery}&apikey=4a3b711b`)
@@ -74,6 +76,7 @@ function App() {
 
   const handleMovieClick = (imdbID) => {
     setSelectedMovie(imdbID);
+    setShowMovieInfo(true);
   };
 
   return (
@@ -95,6 +98,13 @@ function App() {
           deleteFavouriteMovie={deleteFavouriteMovie}
           handleMovieClick={handleMovieClick}
         />
+        {showMovieInfo && (
+          <MovieInfo
+            movieInfo={movieInfo}
+            showMovieInfo={showMovieInfo}
+            setShowMovieInfo={setShowMovieInfo}
+          />
+        )}
       </div>
     </div>
   );

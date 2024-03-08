@@ -158,3 +158,65 @@
   box-shadow: 0 0 0.25em #919479b6;
   transition: all 350ms;
 }
+
+.movie-info {
+  background-color: #d4a37342;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(0.2em);
+}
+
+.movie-info > .info-container {
+  width: 30em;
+  height: 80vh;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5em;
+  background-color: #d4a373;
+  border-radius: 1em;
+  box-shadow: 0 0 2em 0.5em #b3773bad;
+}
+
+.movie-info-poster {
+  width: 250px;
+  border-radius: 1em;
+}
+
+.movie-overview {
+  text-align: center;
+}
+
+.movie-info > .movie-info-button {
+  width: 1.75em;
+  height: 1.75em;
+  position: relative;
+  bottom: 24em;
+  left: 0.3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.movie-info > .movie-info-button > div:nth-child(1) {
+  height: 4px;
+  width: 90%;
+  background-color: #b3773b;
+  rotate: 45deg;
+  border-radius: 4px;
+  position: absolute;
+}
+
+.movie-info > .movie-info-button > div:nth-child(2) {
+  height: 4px;
+  width: 90%;
+  background-color: #b3773b;
+  rotate: -45deg;
+  border-radius: 4px;
+  position: absolute;
+}
