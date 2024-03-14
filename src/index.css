@@ -60,12 +60,12 @@
   transition: filter 0.3s;
   transition: box-shadow 0.3s;
   filter: grayscale(60%);
-  box-shadow: 0 -0.1em 0.5em rgb(181, 144, 151);
+  box-shadow: 0 -0.1em 0.5em rgb(0, 0, 0);
 }
 
 .movie:hover > .movie-poster > img {
   filter: grayscale(5%);
-  box-shadow: 0 -0.1em 0.75em rgb(181, 144, 151);
+  box-shadow: 0 -0.1em 0.75em rgb(110, 95, 98);
 }
 .picture-menu {
   background-color: rgba(255, 192, 203, 0.781);
@@ -161,6 +161,7 @@
 
 .movie-info {
   background-color: #d4a37342;
+  display: flex;
   position: absolute;
   width: 100vw;
   height: 100vh;
@@ -188,14 +189,18 @@
   border-radius: 1em;
 }
 
-.movie-overview {
+.info-container > p {
   text-align: center;
+  overflow-y: auto;
+  max-height: 20em;
 }
 
 .movie-info > .movie-info-button {
   width: 1.75em;
   height: 1.75em;
-  position: relative;
+  /* position: relative; */
+  align-self: flex-start;
+  margin-top: 3.5em;
   bottom: 24em;
   left: 0.3em;
   display: flex;
@@ -205,7 +210,7 @@
 
 .movie-info > .movie-info-button > div:nth-child(1) {
   height: 4px;
-  width: 90%;
+  width: 1.75em;
   background-color: #b3773b;
   rotate: 45deg;
   border-radius: 4px;
@@ -214,9 +219,28 @@
 
 .movie-info > .movie-info-button > div:nth-child(2) {
   height: 4px;
-  width: 90%;
+  width: 1.75em;
   background-color: #b3773b;
   rotate: -45deg;
   border-radius: 4px;
   position: absolute;
+}
+
+.error-message {
+  background-color: #d4a37342;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(0.2em);
+}
+
+.error-message > h4 {
+  text-decoration: underline;
+  cursor: pointer;
 }

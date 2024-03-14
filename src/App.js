@@ -3,14 +3,16 @@ import Search from "./Search";
 import MovieList from "./MovieList";
 import FavouriteTab from "./FavouriteTab";
 import MovieInfo from "./MovieInfo";
+import AddedError from "./AddedError";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [favourites, setFavourites] = useState([]);
   const [movieInfo, setMovieInfo] = useState("{}");
-  const [selectMovie, setSelectedMovie] = useState("tt1981115");
+  const [selectMovie, setSelectedMovie] = useState("");
   const [showMovieInfo, setShowMovieInfo] = useState(false);
+  const [alreadyAdded, setAlreadyAdded] = useState(false);
 
   useEffect(() => {
     fetch(`https://www.omdbapi.com/?s=${searchQuery}&apikey=4a3b711b`)
@@ -33,6 +35,32 @@ function App() {
         }
       });
   }, [selectMovie]);
+
+  // https://www.omdbapi.com/?apikey=4a3b711b&i=tt7631058
+
+  const addFavouriteMovie = (movie) => {
+    const isAlreadyFavourited = favourites.some(
+      (favourite) => favourite.imdbID === movie.imdbID
+    );
+
+    if (!isAlreadyFavourited) {
+      const newFavouriteList = [...favourites, movie];
+      setFavourites(newFavouriteList);
+    } else {
+      setAlreadyAdded(!alreadyAdded);
+    }
+  };
+
+  const deleteFavouriteMovie = (imdbID) => {
+    setFavourites((prevFavourites) =>
+      prevFavourites.filter((movie) => movie.imdbID !== imdbID)
+    );
+  };
+
+  const handleMovieClick = (imdbID) => {
+    setSelectedMovie(imdbID);
+    setShowMovieInfo(true);
+  };
 
   const movieListStyle = {
     border: "4px solid",
@@ -63,22 +91,6 @@ function App() {
     right: "3em",
   };
 
-  const addFavouriteMovie = (movie) => {
-    const newFavouriteList = [...favourites, movie];
-    setFavourites(newFavouriteList);
-  };
-
-  const deleteFavouriteMovie = (imdbID) => {
-    setFavourites((prevFavourites) =>
-      prevFavourites.filter((movie) => movie.imdbID !== imdbID)
-    );
-  };
-
-  const handleMovieClick = (imdbID) => {
-    setSelectedMovie(imdbID);
-    setShowMovieInfo(true);
-  };
-
   return (
     <div className="App">
       <div className="container">
@@ -103,6 +115,13 @@ function App() {
             movieInfo={movieInfo}
             showMovieInfo={showMovieInfo}
             setShowMovieInfo={setShowMovieInfo}
+            setSelectedMovie={setSelectedMovie}
+          />
+        )}
+        {alreadyAdded && (
+          <AddedError
+            alreadyAdded={alreadyAdded}
+            setAlreadyAdded={setAlreadyAdded}
           />
         )}
       </div>
